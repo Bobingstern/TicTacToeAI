@@ -3,7 +3,7 @@ let turn = 1
 let model
 
 async function loadModel(){
-	model = await tf.loadLayersModel("https://raw.githubusercontent.com/Bobingstern/TicTacToeAI/main/tfjs%20app/model/model.json")
+	model = await tf.loadLayersModel("https://raw.githubusercontent.com/Bobingstern/TicTacToeAI/main/tfjs_app/model/model.json")
 }
 loadModel()
 function setup() {
