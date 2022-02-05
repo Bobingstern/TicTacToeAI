@@ -44,20 +44,83 @@ class TicTacToe{
     }
     return false
   }
+  rowIsWinning(arr, item){
+    for (let i of arr){
+      if (i != item){
+        return false
+      }
+    }
+    return true
+  }
+  getDiags(arr){
+    let diags = []
+    let temp = []
+    for (let i in arr){
+        temp.push(arr[i][i])
+    }
+    diags.push(temp)
+    temp = []
+    for (let i=arr.length-1;i>-1;i--){
+        temp.push(arr[arr.length-1-i][i])
+    }
+    diags.push(temp)
+    return diags
+  }
   checkForWin(){
-    const reducer = (previousValue, currentValue) => previousValue + currentValue;
-    //Check across for O
-    let rotatedArr = transposeArray(this.board, this.board.length)
+    let rot = transposeArray(this.board, this.board.length)
+    let diags = this.getDiags(this.board)
     for (let r of this.board){
-      if (r.reduce(reducer) == 6){
+      if (this.rowIsWinning(r, 2)){
         return 2
       }
     }
-    for (let r of rotatedArr){
-      if (r.reduce(reducer) == 6){
+    for (let r of rot){
+      if (this.rowIsWinning(r, 2)){
         return 2
       }
     }
+    for (let r of diags){
+      if (this.rowIsWinning(r, 2)){
+        return 2
+      }
+    }
+
+    for (let r of this.board){
+      if (this.rowIsWinning(r, 1)){
+        return 1
+      }
+    }
+    for (let r of rot){
+      if (this.rowIsWinning(r, 1)){
+        return 1
+      }
+    }
+    for (let r of diags){
+      if (this.rowIsWinning(r, 1)){
+        return 1
+      }
+    }
+
+    for (let i of this.board.flat()){
+      if (i == 0){
+        return -1
+      }
+    }
+    return 0
+  }
+  getState(turn){
+    let state = this.board.flat()
+    if (turn == 1){
+        for (let i=0;i<state.length;i++){
+            if (state[i] == 2){
+                state[i] = 1
+            }
+            else if (state[i] == 1){
+                state[i] = 2
+            }
+        }
+    }
+    return state
   }
   
   
