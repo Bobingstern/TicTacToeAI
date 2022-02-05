@@ -15,7 +15,7 @@ function setup() {
 function draw() {
   background(220);
   textAlign(CENTER)
-  text("You are Os (Knots). Press a key from 0-8", width/2, 100)
+  //text("You are Os (Knots). Press a key from 0-8", width/2, 100)
   if (tic.checkForWin() == -1){
 	  if (turn == 0){
 	  	let tn = tf.tensor([tic.getState(turn)])
