@@ -18,6 +18,8 @@ class TicTacToe{
     this.cellsize = 70
     this.board = []
     this.initBoard()
+    this.selections = createVector(0, 0)
+    this.flatSel = 0
   }
   initBoard(){
     this.board = [[0, 0, 0],
@@ -34,7 +36,7 @@ class TicTacToe{
     }
     return false
   }
-    moveO(place){
+  moveO(place){
     if (place > 8 || place < 0){return false}
     let row = place % 3
     let column = floor(place/3)
@@ -136,10 +138,23 @@ class TicTacToe{
     
     line(width/2-this.cellsize/2, height/2-this.cellsize, width/2-this.cellsize/2, height/2+this.cellsize*2)
     line(width/2+this.cellsize/2, height/2-this.cellsize, width/2+this.cellsize/2, height/2+this.cellsize*2)
+    
+    let flatPos = 0
+    let points = []
+    let pointInds = []
     for (let c=0;c<this.board.length;c++){
       let y = height/2 - this.cellsize/2
       for (let r=0;r<this.board[c].length;r++){
+        points.push(createVector(x, y))
+        pointInds.push(createVector(c, r))
         push()
+        if (this.selections.x == c && this.selections.y == r){
+          stroke(0, 255, 0, 200)
+          noFill()
+          rectMode(CENTER)
+          rect(x, y, this.cellsize)
+          stroke(0)
+        }
         if (this.board[r][c] == 1){
           this.drawCross(x, y, this.cellsize/2)
         }
@@ -149,9 +164,21 @@ class TicTacToe{
         }
         pop()
         y+=this.cellsize
+        flatPos++
       }
       x+=this.cellsize
     }
+    let clampedX = constrain(mouseX, width/2-this.cellsize*1.5, width/2+this.cellsize*1.5)
+    let clampedY = constrain(mouseY, height/2-this.cellsize, height/2+this.cellsize*2)
+    let closest = 999999
+    for (let i=0;i<points.length;i++){
+      let d = dist(points[i].x, points[i].y, clampedX, clampedY)
+      if (d < closest){
+        closest = d
+        this.selections = pointInds[i].copy()
+      }
+    }
+    this.flatSel = this.selections.x + (3*this.selections.y)
   }
   printBoard(){
     console.log(this.board[0])

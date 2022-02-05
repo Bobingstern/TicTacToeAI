@@ -31,44 +31,50 @@ function draw() {
   tic.show()
 }
 
-function keyPressed(){
+function mouseClicked(){
 	if (turn == 1){
-		if (keyCode == 48){
-			tic.moveO(0)
-			turn = 0
-		}
-		if (keyCode == 49){
-			tic.moveO(1)
-			turn = 0
-		}
-		if (keyCode == 50){
-			tic.moveO(2)
-			turn = 0
-		}
-		if (keyCode == 51){
-			tic.moveO(3)
-			turn = 0
-		}
-		if (keyCode == 52){
-			tic.moveO(4)
-			turn = 0
-		}
-		if (keyCode == 53){
-			tic.moveO(5)
-			turn = 0
-		}
-		if (keyCode == 54){
-			tic.moveO(6)
-			turn = 0
-		}
-		if (keyCode == 55){
-			tic.moveO(7)
-			turn = 0
-		}
-		if (keyCode == 56){
-			tic.moveO(8)
-			turn = 0
-		}
-		
+		tic.moveO(tic.flatSel)
+		turn = 0
 	}
 }
+// function keyPressed(){
+// 	if (turn == 1){
+// 		if (keyCode == 48){
+// 			tic.moveO(0)
+// 			turn = 0
+// 		}
+// 		if (keyCode == 49){
+// 			tic.moveO(1)
+// 			turn = 0
+// 		}
+// 		if (keyCode == 50){
+// 			tic.moveO(2)
+// 			turn = 0
+// 		}
+// 		if (keyCode == 51){
+// 			tic.moveO(3)
+// 			turn = 0
+// 		}
+// 		if (keyCode == 52){
+// 			tic.moveO(4)
+// 			turn = 0
+// 		}
+// 		if (keyCode == 53){
+// 			tic.moveO(5)
+// 			turn = 0
+// 		}
+// 		if (keyCode == 54){
+// 			tic.moveO(6)
+// 			turn = 0
+// 		}
+// 		if (keyCode == 55){
+// 			tic.moveO(7)
+// 			turn = 0
+// 		}
+// 		if (keyCode == 56){
+// 			tic.moveO(8)
+// 			turn = 0
+// 		}
+		
+// 	}
+// }
